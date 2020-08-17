@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Admin</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">  
+	<script type="text/javascript" src="vendor/bootstrap.js"></script>
+ 	<!-- <script type="text/javascript" src="1.js"></script> -->
+	<link rel="stylesheet" href="vendor/bootstrap.css">
+	<link rel="stylesheet" href="vendor/font-awesome.css">
+ 	<link rel="stylesheet" href="css/showTeacher.css">
+	<script type="text/javascript" src="./admin.js"></script>
+	
+</head>
+<body>
+	<div class="hv_admin">
+		<div class="container-fluid">
+			<div class="row">
+				
+				<div class="col-md-3 hv_menu_admin">
+					<div class="hv_box_avt">
+						<figure>
+							<img src="images/user1.png" alt="" class="img-fluid">
+						</figure>
+						<h1 name = "IdAdmin" class="IDAdmin">ADMIN</h1>
+						<div class="hv_gr_func">
+							<ul>
+								<li><button  id="AddUser">Add User</button></li>
+								<li><button  id="AddClass" onclick = "genClassID()">Add Class</button></li>
+								<li><button  id="AddStudent">Add Student</button></li>
+								<li><button  id="UpdateClass">Close/open class</button></li>
+								<li><button  id="UpdateGrade" onclick="getStudent()">Update grade</button></li>
+							</ul>
+						</div>
+						<div class="hv_btn_comback">
+							<?php echo $button ?>
+						</div>
+					</div>
+				</div>
+				<div class="hv_display_table col-md-9 addUser show">
+					<div class="hv_form_fil">
+						
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-2 form-control-label">Role</label>
+								<div class="hv_sel col-md-4">
+									<select id="role" class="chon">
+											<option value="teacher">Teacher</option>
+											<option value="student">Student</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-2 form-control-label">Full name</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="fullname" placeholder="Full name">
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-2 form-control-label">Phone number</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="phonenumber" placeholder="Phone number">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-2 form-control-label">Email</label>
+								<div class="col-sm-4">
+									<input type="email" class="form-control" id="fullname" placeholder="Email address">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-2 form-control-label" >Password</label>
+								<div class="col-sm-4">
+									<input type="password" class="form-control" id="password" onblur= "checker()" placeholder="password">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-2 form-control-label" ">Re-password</label>
+								<div class="col-sm-4">
+									<input type="password" class="form-control" id="repass" onblur="checker()" placeholder="rePassword">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="submit"  id="buttonvl" class="btn btn-secondary btnAdd" disabled="disabled" onclick="addUser();alert('Success');">Add</button>
+								</div>
+							</div>
+						
+					</div>
+				</div>
+
+
+
+				<div class="hv_display_table col-md-9 addClass hidden">
+					<div class="hv_form_fil">
+						
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-2 form-control-label">Level</label>
+								<div class="hv_sel col-md-4">
+									<select id="classlevel" class="chon" onchange="genClassID()">
+											<option value="beginer">Beginer</option>
+											<option value="intermediate">Intermediate</option>
+											<option value="advance">Advance</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-2 form-control-label">ClassID</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="classID" placeholder="ID" disabled="disabled">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-2 form-control-label">Teacher ID</label>
+								<div class="hv_sel col-md-4">
+									<select id="teacherID" class="chon">
+										
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-2 form-control-label">Schedule</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="schedule" placeholder="234 stand for monday tuesday and thursday">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-2 form-control-label">Start day</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="start">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-2 form-control-label">Finish day</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="end">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button class="btn btn-secondary btnAdd" onclick="addmoreClass();alert('Success')">Add</button>
+								</div>
+							</div>
+						
+					</div>
+					<div class="show_result_TT  ">
+						
+							
+					</div>
+				</div>
+				<div class="hv_display_table col-md-9 addStudent hidden">
+					<div class="hv_form_fil">
+						
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-2 form-control-label">ClassID</label>
+								<div class="hv_sel col-md-4">
+									<select id="select_class1" class="chon">
+											
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-2 form-control-label">StudentID</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="studentid1" placeholder="ID">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button  class="btn btn-secondary btnAdd" onclick="updateStudent2Class();alert('Success')">Add</button>
+								</div>
+							</div>
+						
+					</div>
+				</div>
+				<div class="hv_display_table col-md-9 UpdateClass hidden">
+					<div class="hv_form_fil">
+						
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-2 form-control-label">ClassID</label>
+								<div class="hv_sel col-md-4">
+									<select id="select_class" class="chon">
+											
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-2 form-control-label">Status</label>
+								<div class="hv_sel col-md-4">
+									<select class="chon" id="status">
+											<option value="1">Open</option>
+											<option value="0">Close</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button  class="btn btn-secondary btnAdd" onclick="updateClassStatus();alert('Success')">Add</button>
+								</div>
+							</div>
+						
+					</div>
+				</div>
+				
+				<div class="hv_display_table col-md-9 UpdateGrade hidden">
+					<div class="hv_form_fil">
+						
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-2 form-control-label">ClassID</label>
+								<div class="hv_sel col-md-4">
+									<select id="select_class2" class="chon" onchange="getStudent()">
+										
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-2 form-control-label">StudentID</label>
+								<div class="hv_sel col-md-4">
+									<select id="StudentX" class="chon">
+										
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-2 form-control-label">Grade</label>
+								<div class="col-sm-4">
+									<input type="number" min="0" max="10" class="form-control" id="grade">
+								</div>
+							</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button  class="btn btn-secondary btnAdd" onclick="addGrade();alert('Success')">Add</button>
+								</div>
+							</div>
+						
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function (){
+		    
+		 $("#AddUser").click(function (){
+		        $(".addUser").addClass("show");
+		        $(".addUser").removeClass("hidden");
+		        $(".addClass").addClass("hidden");
+		        $(".addClass").removeClass("show");
+		        $(".addStudent").addClass("hidden");
+		        $(".addStudent").removeClass("show");
+				$(".UpdateClass").addClass("hidden");
+		        $(".UpdateClass").removeClass("show");
+				$(".UpdateGrade").addClass("hidden");
+		        $(".UpdateGrade").removeClass("show");
+		    });
+		   
+		    
+		 $("#AddClass").click(function (){
+		        $(".addClass").addClass("show");
+		        $(".addClass").removeClass("hidden");
+		        $(".addUser").addClass("hidden");
+		        $(".addUser").removeClass("show");
+		        $(".addStudent").addClass("hidden");
+		        $(".addStudent").removeClass("show");
+				$(".UpdateClass").addClass("hidden");
+		        $(".UpdateClass").removeClass("show");
+				$(".UpdateGrade").addClass("hidden");
+		        $(".UpdateGrade").removeClass("show");
+		    });
+		   
+		    
+		 $("#AddStudent").click(function (){
+		        $(".addStudent").addClass("show");
+		        $(".addStudent").removeClass("hidden");
+		        $(".addClass").addClass("hidden");
+		        $(".addClass").removeClass("show");
+		        $(".addUser").addClass("hidden");
+		        $(".addUser").removeClass("show");
+				$(".UpdateClass").addClass("hidden");
+		        $(".UpdateClass").removeClass("show");
+				$(".UpdateGrade").addClass("hidden");
+		        $(".UpdateGrade").removeClass("show");
+		    });
+		 $("#UpdateClass").click(function (){
+		        $(".UpdateClass").addClass("show");
+		        $(".UpdateClass").removeClass("hidden");
+		        $(".addClass").addClass("hidden");
+		        $(".addClass").removeClass("show");
+		        $(".addUser").addClass("hidden");
+		        $(".addUser").removeClass("show");
+				$(".UpdateGrade").addClass("hidden");
+		        $(".UpdateGrade").removeClass("show");
+				$(".addStudent").addClass("hidden");
+		        $(".addStudent").removeClass("show");
+		    });
+		 $("#UpdateGrade").click(function (){
+		        $(".UpdateGrade").addClass("show");
+		        $(".UpdateGrade").removeClass("hidden");
+		        $(".addClass").addClass("hidden");
+		        $(".addClass").removeClass("show");
+		        $(".addUser").addClass("hidden");
+		        $(".addUser").removeClass("show");
+		        $(".addStudent").addClass("hidden");
+		        $(".addStudent").removeClass("show");
+				$(".UpdateClass").addClass("hidden");
+		        $(".UpdateClass").removeClass("show");
+		    });
+		   
+		}); 
+	</script>
+	<!--Ninjutsu start-->
+	<script>
+		function genClassID(){
+			var level = document.getElementById("classlevel").value;
+			var id = new Date().getTime();
+			switch(level){
+				case "beginer": id = "BG"+id;break;
+				case "intermediate": id = "IM"+id;break;
+				case "advance": id = "AD"+id;break;
+				default:id = "xxxxx";
+			}
+			document.getElementById("classID").value = id;
+			
+		}
+		
+		function checker(){
+			var pass = document.getElementById("password").value;
+			var repass = document.getElementById("repass").value;
+			if (pass!=repass && pass!=""){
+				document.getElementById("buttonvl").disabled = true;
+			}else{
+				document.getElementById("buttonvl").disabled = false;
+			}
+		}
+		
+		function send_request(url){
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open("GET",url,false);
+			xmlHttp.send( null );
+			var response = xmlHttp.responseText;
+			return response;
+		}
+		function addUser(){
+			var role = document.getElementById("role").value;
+			var fullname = document.getElementById("fullname").value;
+			var password = document.getElementById("password").value
+			var repass = document.getElementById("repass").value;
+			var base_url = "http://127.0.0.1/KMA/role/admin/add.php?username="+fullname+"&password="+password+"&role="+role+"&action=xxx";
+			if (password != repass){
+				alert("password and re-password must be the same");
+			}else{
+				send_request(base_url);
+				window.location.reload();
+			}
+		}
+		function addmoreClass(){
+			var classid = document.getElementById("classID").value;
+			var teacherid = document.getElementById("teacherID").value;
+			var start = document.getElementById("start").value;
+			var end = document.getElementById("end").value;
+			var schedule = document.getElementById("schedule").value;
+			var base_url = "http://127.0.0.1/KMA/role/admin/add.php?classid="+classid+"&teacherid="+teacherid+"&schedule="+schedule+"&start="+start+"&end="+end+"&action=class";
+			send_request(base_url);		
+			window.location.reload();
+		}
+		
+		function updateStudent2Class(){
+			var classID = document.getElementById("select_class1").value;
+			var studentID = document.getElementById("studentid1").value;
+			var base_url =  "http://127.0.0.1/KMA/role/admin/add.php?classid="+classID+"&studentid="+studentID+"&action=update";
+			send_request(base_url);
+			window.location.reload();
+		}
+		
+		function updateClassStatus(){
+			var classID = document.getElementById("select_class").value;
+			var status = document.getElementById("status").value;
+			var base_url =  "http://127.0.0.1/KMA/role/admin/add.php?classid="+classID+"&status="+status+"&action=status";
+			send_request(base_url);
+			window.location.reload();
+		}
+		
+		function addGrade(){
+			var classID = document.getElementById("select_class2").value;
+			var studentID = document.getElementById("StudentX").value;
+			var grade = document.getElementById("grade").value;
+			var base_url =  "http://127.0.0.1/KMA/role/admin/add.php?classid="+classID+"&studentid="+studentID+"&grade="+grade+"&action=grade";
+			send_request(base_url);
+			window.location.reload();
+		}
+		function getall(){
+			var classes = send_request("http://127.0.0.1/KMA/role/admin/getInfo.php?getclass");
+			var table = "";
+			classes = JSON.parse(classes);
+			var i =0;
+			console.log(classes);
+			for(i=0;i<classes.length;i++){
+			  console.log(classes[i]["classid"]);
+			  table+="<option value=\""+classes[i]["classid"]+"\">"+classes[i]["classid"]+"</option>"
+			}
+			document.getElementById("select_class2").innerHTML = table;
+			document.getElementById("select_class1").innerHTML = table;
+			document.getElementById("select_class").innerHTML = table;
+			
+			
+			var teacher = send_request("http://127.0.0.1/KMA/role/admin/getInfo.php?getteacher");
+			var table = "";
+			teacher = JSON.parse(teacher);
+			var i =0;
+			console.log(teacher);
+			for(i=0;i<teacher.length;i++){
+			  console.log(teacher[i]["id"]);
+			  table+="<option value=\""+teacher[i]["id"]+"\">"+teacher[i]["id"]+"</option>"
+			}
+			document.getElementById("teacherID").innerHTML = table;
+		}
+		function getStudent(){
+			var classID = document.getElementById("select_class2").value;
+			console.log(classID);
+			var student = send_request("http://127.0.0.1/KMA/role/admin/getInfo.php?class="+classID);
+			table = "";
+			student = JSON.parse(student);
+			console.log(student);
+			var i =0;
+			for(i=0;i<student.length;i++){
+			  var id = student[i]["studentID"];
+			  table+="<option value=\""+id+"\">"+id+"</option>"
+			}
+			console.log(table);
+			document.getElementById("StudentX").innerHTML = table;
+		}
+		getStudent();
+		getall();
+	</script>
+	<!--Ninjutsu end-->
+	
+</body>
+</html>

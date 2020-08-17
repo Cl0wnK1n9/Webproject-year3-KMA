@@ -1,0 +1,103 @@
+<html lang="en"><head>
+	<title> Student site </title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">  
+	<script type="text/javascript" src="vendor/bootstrap.js"></script>
+	<link rel="stylesheet" href="vendor/bootstrap.css">
+	<link rel="stylesheet" href="vendor/font-awesome.css">
+ 	<link rel="stylesheet" href="css/showTeacher.css">
+ 	<link rel="stylesheet" href="js/showTeacher.js">
+	<script type="text/javascript" src="http://127.0.0.1/KMA/js/teacherinfo.js"></script>
+</head>
+<body>
+	<!-- begin banner -->
+	<div class="banner">
+		<div class="container">
+			<div class="row">
+
+				<div class="logo col-md-2">
+					<span style="color: red">A</span><span style="color: yellow">B</span><span style="color: #02c9f3">C</span><br>English
+				</div>
+				<div class="col-md-10 logout">
+					<span nam="ID"><?php echo $_SESSION['username'] ?></span> <img src="images/user1.png" alt=""><?php echo "$button";?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="box">
+		<div class="container">
+			<div class="back">
+				<a href="news.html"><i class="fa fa-angle-double-left"></i> Trang Chủ</a><br>
+			</div>
+			<div class="row">
+				<div class="show_result_TT col-md-12 ">
+					<h3>Thông Tin Sinh Viên</h3>
+						<table class="table">
+						  <thead class="thead-dark">
+						    <tr>
+						      <th scope="col">STT</th>
+						      <th scope="col">Tên Lớp</th>
+						      <th scope="col">Điểm</th>
+						      <th scope="col">Lịch Học</th>
+						    </tr>
+						  </thead>
+						  <tbody id="studentInfo">
+						    <!--<tr>
+						      <th scope="row">1</th>
+						      <td name="number_child">TOIEIC 1.1</td>
+						      <td name="name_class_studied">3</td>
+						      <td name="nam_class_studing"> thứ 2, thứ 4, thứ 6</td>
+						    </tr>
+						    <tr>
+						      <th scope="row">2</th>
+						      <td>BASIC1</td>
+						      <td>0</td>
+						      <td>thứ 2, thứ 4, thứ 6</td>
+						    </tr>
+						    <tr>
+						      <th scope="row">3</th>
+						      <td>BASIC1</td>
+						      <td>0</td>
+						      <td>thứ 2, thứ 4, thứ 6</td>
+						    </tr>-->
+						  </tbody>
+						</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Ninjutsu start-->
+	<script>
+	var i=0;
+		var url = "http://127.0.0.1/KMA/role/teacher/teacherinfo.php";
+		var currentID = send_request(url);
+		//Get * class
+		var tmp_url=url+"?table=grade&param=studentID&value="+currentID['id'];
+		var list_class = send_request(tmp_url);
+		var table = "";
+		var num = 0;
+		//render
+		for(i;i<list_class.length;i++){
+			tmp_url=url+"?table=class&param=classID&value="+list_class[i]["ClassId"];
+			var schedule = send_request(tmp_url);
+			var j=0;
+			for (j=0;j<schedule.length;j++){
+				table+='<tr><th scope="row">'+(num+1)+'</th><td>'+list_class[i]["ClassId"]+'</td><td>'+list_class[i]["Grade"]+'</td><td>'+schedule[j]["schedule"]+'</td></tr>';
+				num++;
+			}
+		}
+		
+		var url = "http://127.0.0.1/KMA/role/teacher/teacherinfo.php";
+		var url_class = url+"?table=student&param=studentID&value="+currentID['id'];
+		var list_class2 = send_request(url_class);
+		tmp_url=url+"?table=class&param=classID&value="+list_class2[0]["class"];
+		var schedule = send_request(tmp_url);
+		if(schedule[0]["status"]=="1"){
+			table+='<tr><th scope="row">'+(num+1)+'</th><td>'+list_class2[0]["class"]+'</td><td>Vẫn đang học</td><td>'+schedule[0]["schedule"]+'</td></tr>';
+		}
+		document.getElementById("studentInfo").innerHTML= table;
+		
+	</script>
+	<!--Ninjutsu end-->
+</body>
+</html>

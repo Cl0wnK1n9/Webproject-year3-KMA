@@ -1,0 +1,222 @@
+<html lang="en"><head>
+	<title> Example </title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">  
+	<script type="text/javascript" src="vendor/bootstrap.js"></script>
+	<link rel="stylesheet" href="vendor/bootstrap.css">
+	<link rel="stylesheet" href="vendor/font-awesome.css">
+ 	<link rel="stylesheet" href="css/showTeacher.css">
+	<script type="text/javascript" src="http://127.0.0.1/KMA/js/teacherinfo.js"></script>
+</head>
+<body>
+	<!-- begin banner -->
+	<div class="banner">
+		<div class="container">
+			<div class="row">
+				<div class="logo col-md-2">
+					<span style="color: red">A</span><span style="color: yellow">B</span><span style="color: #02c9f3">C</span><br>English
+				</div>
+				<div class="col-md-10 logout">
+					<span nam="ID"><?php echo $_SESSION['username'];?></span> <img src="images/user1.png" alt=""><?php echo "$button";?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="box">
+		<div class="container">
+			<div class="row">
+				<div class="navigation col-md-3">
+					<h2>Chức Năng: </h2>
+					<ul class="list-group">
+						<li class="list-group-item "  id=""><button class="ld" id="ld" >Lịch Dạy</button></li>
+						<li class="list-group-item " id=""><button class="search" id="search" >Tra Cứu Thông Tin Sinh Viên</button></li>
+					</ul>
+				</div>
+				<div class="show_result_lichday col-md-9 show">
+					<h3>Thông Tin Lịch Dạy</h3>
+					<table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">STT</th>
+					      <th scope="col">Mã Lớp</th>
+					      <th scope="col">Số Lượng Sinh Viên</th>
+					      <th scope="col">Ngày Đóng Lớp</th>
+					      <th scope="col">Lịch Học</th>
+					    </tr>
+					  </thead>
+					  <tbody id = 'info'>
+					   <!-- <tr>
+					      <th scope="row">1</th>
+					      <td name="ID_class">IELTS123</td>
+					      <td name="number_SV">36</td>
+					      <td name="date_finish">12/12/2020</td>
+					      <td name="date_teach">2,4,6</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">2</th>
+					      <td>TOIEIC345</td>
+					      <td>36</td>
+					      <td>12/12/2021</td>
+					      <td>3,5,7</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">3</th>
+					      <td>BASIC 1</td>
+					      <td>30</td>
+					      <td>12/12/2022</td>
+					      <td>7,CN</td>
+					    </tr>-->
+					  </tbody>
+					</table>
+
+				</div>
+				<div class="show_result_TT col-md-9 hidden">
+					
+						<input class="form-control mr-sm-2" type="text" placeholder="Search by name" aria-label="Search" id="name">
+						<button class="btn btn-outline-success my-2 my-sm-0" onclick="search()">Search</button>
+					
+					<h3>Thông Tin Sinh Viên</h3>
+						<table class="table">
+						  <thead class="thead-dark">
+						    <tr>
+						      <th scope="col">STT</th>
+						      <th scope="col">ID</th>
+						      <th scope="col">Họ Và Tên</th>
+						      <th scope="col">Lớp Đã Tham Gia</th>
+						      <th scope="col">Lớp Đang Tham Gia</th>
+						    </tr>
+						  </thead>
+						  <tbody id="search2">
+						  
+						    <!--<tr>
+						      <th scope="row">1</th>
+						      <td name="ID_ST">ST12345</td>
+						      <td name="full_name">Hoàng Quang Vinh</td>
+						      <td name="score">9.0</td>
+						      <td name="number_child">20</td>
+						      <td name="name_class_studied">BASIC1, IELTS 3.3</td>
+						      <td name="nam_class_studing">TOIEIC 1.1</td>
+						    </tr>
+						    <tr>
+						      <th scope="row">2</th>
+						      <td>ST12345</td>
+						      <td>Đỗ Mạnh Dũng</td>
+						      <td>9.5</td>
+						      <td>100</td>
+						      <td>BASIC1, TOIEIC 1.1</td>
+						      <td>IELTS 2.2</td>
+						    </tr>
+						    <tr>
+						      <th scope="row">3</th>
+						      <td>ST12345</td>
+						      <td>Hoàng Quang Vinh</td>
+						      <td>9.0</td>
+						      <td>20</td>
+						      <td>BASIC1, IELTS 3.3</td>
+						      <td>TOIEIC 1.1</td>
+						    </tr>-->
+						  </tbody>
+						</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function (){
+    $(".search").click(function (){
+        $(".show_result_TT").addClass("show");
+        $(".show_result_TT").removeClass("hidden");
+        $(".show_result_lichday").addClass("hidden");
+        $(".show_result_lichday").removeClass("show");
+        
+    });
+   
+}); 
+$(document).ready(function (){
+    
+ $(".ld").click(function (){
+        $(".show_result_lichday").addClass("show");
+        $(".show_result_lichday").removeClass("hidden");
+        $(".show_result_TT").addClass("hidden");
+        $(".show_result_TT").removeClass("show");
+        
+    });
+   
+}); 
+	</script>
+	
+	
+	<!--Ninjutsu start-->
+	<script>
+		var i=0;
+		var num = 0;
+		var url = "http://127.0.0.1/KMA/role/teacher/teacherinfo.php";
+		var currentID = send_request(url);
+		//Get * class
+		var tmp_url=url+"?table=class&param=teacherID&value="+currentID['id'];
+		var list_class = send_request(tmp_url);
+		var table = "";
+		//render
+		for(i;i<list_class.length;i++){
+			tmp_url=url+"?table=student&param=class&value="+list_class[i]["classID"];
+			var list_student_length = send_request(tmp_url).length
+			table+='<tr><th scope="row">'+(num+1)+'</th><td name="ID_class">'+list_class[i]["classID"]+'</td><td name="number_SV">'+list_student_length+'</td><td name="date_finish">'+list_class[i]["end"]+'</td><td name="date_teach">'+list_class[i]["schedule"]+'</td></tr>'
+			num++;
+		}
+		document.getElementById("info").innerHTML= table;
+		
+		//Seaching game 
+		function search_id(name){
+			var tmp_url = url+"?table=user&param=username&s="+name;
+			var list_student = send_request(tmp_url);
+			return  list_student;
+		}
+		function search_class(student_id){
+			var tmp_url = url+"?table=student&param=studentID&s="+student_id;
+			var list_class = send_request(tmp_url);
+			return  list_class;
+		}
+		
+		function class_status(classID){
+			var tmp_url = url+"?table=class&param=classID&value="+classID;
+			var list = send_request(tmp_url);
+			return list[0]['status'];
+		}
+		
+		function search(){
+			var i=0;
+			var num = 0;
+			var name = document.getElementById("name").value;
+			var table = "";
+			if (name!=""){
+				for(i;i<search_id(name).length;i++){
+					console.log(search_id(name)[i]["role"]);
+					if(search_id(name)[i]["role"]=="student"){
+						var id = search_id(name)[i]['id'];
+						table += '<tr><th scope="row">'+(num+1)+'</th><td name="ID_ST">'+id+'</td><td name="full_name">'+search_id(name)[i]['username'];
+						num++;
+						var j = 0;
+						var classx = "";
+						var classy = "";
+						if(search_class(id)!=null){
+							for (j;j<search_class(id).length;j++){
+								if (class_status(search_class(id)[j]['class']) == 0){
+									classx+=search_class(id)[j]['class']+", ";
+								}else{
+									classy+=search_class(id)[j]['class']+", ";
+								}
+							}
+						}
+						table +='<td name="name_class_studied">'+classx+'</td><td name="nam_class_studing">'+classy+'</td></tr>';
+						document.getElementById("search2").innerHTML= table;
+					}
+				}
+			}
+			
+		}
+		
+		
+	</script>
+	<!--Ninjutsu end-->
+</body>
+</html>
