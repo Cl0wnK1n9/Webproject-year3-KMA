@@ -1,0 +1,91 @@
+*{padding: 0; margin: 0}
+
+.col-md-3 {
+    margin: 30px 0;
+}
+
+.col-md-9.title.text-center {
+    margin: 30px 0;
+}
+
+.title h2 {
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+.col-sm-offset-2.col-sm-10 {
+    margin: auto;
+}
+
+.form-group.row {
+}
+
+form {
+    margin: 30px;
+}
+
+img {
+    width: 37%;
+    border-radius: 50%;
+    margin: 20px 0;
+}
+
+.box {
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    border: 1px solid wheat;
+    border-radius: 10px;
+    padding: 20px;
+    background: white;
+    width: 50%;
+    box-shadow: 0 15px 25px
+}
+
+button.btn.btn-primary {
+    margin: 0 10px;
+    border-radius: 50px;
+    transition: 0.5s;
+}
+
+button.btn.btn-primary:hover {
+    background-color: #38aae6;
+}
+
+p.form-control-static {
+    margin: 20px 0;
+    text-align: left;
+    border-bottom: 1px solid;
+}
+
+p.form-control-static.id {
+    text-align: center;
+    border: none;
+    margin-top: 0;
+    margin-bottom: 50px;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: inherit;
+    letter-spacing: 1;
+}
+
+.id {
+}
+
+label {
+    text-align: left;
+    margin: auto;
+    color: #2f0ee3;
+}
+body{
+    background-size: cover;
+}
+footer {
+    font-size: 17px;
+    font-weight: normal;
+    margin: 50px 0px;
+    color: black;
+    text-align: center;
+}
